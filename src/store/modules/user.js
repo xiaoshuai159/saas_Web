@@ -29,39 +29,58 @@ const mutations = {
 
 const actions = {
   // user login
-  login({ commit }, userInfo) {
+  async login({ commit }, userInfo) {
     const { username, password } = userInfo
-    return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
-    })
+    // return new Promise((resolve, reject) => {
+    //   login({ username: username.trim(), password: password }).then(response => {
+    //     const { data } = response
+    //     commit('SET_TOKEN', data.token)
+    //     setToken(data.token)
+    //     resolve()
+    //   }).catch(error => {
+    //     reject(error)
+    //   })
+    // })
+    let result = await login({username: username.trim(), password: password});
+    // console.dir(Promise)
+    if(result.code==20000){
+      commit('SET_TOKEN', result.data.token)
+      setToken(result.data.token)
+      return 'ok';
+    }else{
+      return Promise.reject(new Error('faile'))
+    }
   },
 
   // get user info
-  getInfo({ commit, state }) {
-    return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
+  async getInfo({ commit, state }) {
+    // return new Promise((resolve, reject) => {
+    //   getInfo(state.token).then(response => {
+    //     const { data } = response
 
-        if (!data) {
-          return reject('Verification failed, please Login again.')
-        }
+    //     if (!data) {
+    //       return reject('Verification failed, please Login again.')
+    //     }
 
-        const { name, avatar } = data
+    //     const { name, avatar } = data
 
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        resolve(data)
-      }).catch(error => {
-        reject(error)
-      })
-    })
+    //     commit('SET_NAME', name)
+    //     commit('SET_AVATAR', avatar)
+    //     resolve(data)
+    //   }).catch(error => {
+    //     reject(error)
+    //   })
+    // })
+    const info = await getInfo(state.token)
+    const {data} = info
+    if(!data){
+      return Promise.reject(new Error('Verification failed, please Login again.'))
+    }else{
+      const { name, avatar } = data
+      commit('SET_NAME', name)
+      commit('SET_AVATAR', avatar)
+      return 'ok'
+    }    
   },
 
   // user logout
