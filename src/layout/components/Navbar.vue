@@ -4,10 +4,11 @@
 
     <breadcrumb class="breadcrumb-container" />
 
-    <div class="right-menu">
-      <el-dropdown class="avatar-container" trigger="click">
+    <div class="right-menu" >
+      <!-- <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          欢迎您{{userinfo}}
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -20,17 +21,28 @@
             <span style="display:block;">退出</span>
           </el-dropdown-item>
         </el-dropdown-menu>
-      </el-dropdown>
+      </el-dropdown> -->
+      <img :src="imgurl2" title="退出" alt="imgurl2" @click="tuichu" style="
+                width: 18px;
+                height: 18px;
+                margin: 16px 24px;
+                cursor: pointer;
+              " />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-
+import axios from "axios";
 export default {
+  data(){
+    return{
+      imgurl2: require("@/assets/exit2.png"),
+    }
+  },
   components: {
     Breadcrumb,
     Hamburger
@@ -39,6 +51,9 @@ export default {
     ...mapGetters([
       'sidebar',
       'avatar'
+    ]),
+    ...mapState([
+      'userinfo'
     ])
   },
   methods: {
@@ -48,7 +63,69 @@ export default {
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-    }
+    },
+    tuichu() {
+      
+      this.$confirm("此操作将退出登录, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })      
+        .then(() => {
+          console.log("执行then了");
+          var user_info = this.$store.state.userinfo;
+          axios({
+            method: "post",
+            url: "/login_out",
+            data: { user_info: user_info },
+            headers: {
+              'X-CSRFToken': this.$store.state.token
+            }
+          }).then(() => {
+            this.$message({
+              message: "退出成功！",
+              type: "success",
+            });
+            // console.log(typeof(user_info)) //string
+            // window.sessionStorage.removeItem("user_info")
+            // console.log("执行了then");
+            window.sessionStorage.clear();
+            this.$store.dispatch("updateuserinfo", []);
+            this.$router.replace("/login");
+            //触发后禁止浏览器的后退键
+            history.pushState(null, null, document.URL);
+            window.addEventListener(
+              "popstate",
+              function (e) {
+                history.pushState(null, null, document.URL);
+              },
+              false
+            );
+          }).catch((err) => {
+            console.log(err)
+            window.sessionStorage.clear();
+            this.$store.dispatch("updateuserinfo", []);
+            this.$router.replace("/");
+            //触发后禁止浏览器的后退键
+            history.pushState(null, null, document.URL);
+            window.addEventListener(
+              "popstate",
+              function (e) {
+                history.pushState(null, null, document.URL);
+              },
+              false
+            );
+          });
+        })
+
+        .catch(() => {
+          // console.log(err)
+          this.$message({
+            type: "info",
+            message: "已取消操作",
+          });
+        });
+    },
   }
 }
 </script>
@@ -109,7 +186,7 @@ export default {
       margin-right: 30px;
 
       .avatar-wrapper {
-        margin-top: 5px;
+        
         position: relative;
 
         .user-avatar {
@@ -123,7 +200,7 @@ export default {
           cursor: pointer;
           position: absolute;
           right: -20px;
-          top: 25px;
+          top: 19px;
           font-size: 12px;
         }
       }

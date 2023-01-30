@@ -33,6 +33,7 @@ import Layout from '@/layout'
 export const constantRoutes = [
   {
     path: '/login',
+    name:'login',
     component: () => import('@/views/login/index'),
     hidden: true
   },
@@ -46,120 +47,56 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    // redirect: '/countryPage',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      path: 'countryPage',
+      name: 'CountryPage',
+      component: () => import('@/views/dashboard/countryPage'),
+      meta: { title: '首页', icon: 'dashboard' },
+    },
+    {
+      path: 'provincePage',
+      name: 'ProvincePage',
+      component: () => import('@/views/dashboard/provincePage'),
+      hidden:true,
+      meta: { title: '首页'}
+    },
+    {
+      path: 'cityPage',
+      name: 'CityPage',
+      component: () => import('@/views/dashboard/cityPage'),
+      hidden:true,
+      meta: { title: '首页'}
+    },
+    {
+      path: 'areaPage',
+      name: 'AreaPage',
+      component: () => import('@/views/dashboard/areaPage'),
+      hidden:true,
+      meta: { title: '首页'}
     }]
   },
-
   {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
+    path:'/statistics',
+    component:Layout,
+    name:'Statistics',
+    meta:{
+      title:'事件统计',
+      icon:'el-icon-s-data'
     },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
-      }
-    ]
+    children:[{
+      path:'attack',
+      name:'Attack',
+      component:()=>import('@/views/Event_statistics/attack'),
+      meta:{title:'恶意攻击统计'}
+    },
+    {
+      path:'harm',
+      name:'Harm',
+      component:()=>import('@/views/Event_statistics/harm'),
+      meta:{title:'受害情况统计'}
+    }]
   },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
-  },
-
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
@@ -177,5 +114,14 @@ export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router
 }
-
+router.beforeEach((to, from, next) => {
+  const token = sessionStorage.getItem('token')
+  const userLevel = sessionStorage.getItem('userLevel')
+  if (to.name!=='login'&&!token) next({name:'login'})
+  else if(to.name=='CountryPage'&&userLevel!='1'&&userLevel!='5') next({name:'login'})
+  // else if(to.name=='countryPage'&&userLevel!='5') next({name:'login'})
+  else if(to.name=='ProvincePage'&&userLevel!='1'&&userLevel!='2'&&userLevel!='5') next({name:'login'})
+  else if(to.name=='CityPage'&&userLevel!='1'&&userLevel!='2'&&userLevel!='3'&&userLevel!='5') next({name:'login'})
+  else next()
+})
 export default router

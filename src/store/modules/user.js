@@ -43,7 +43,7 @@ const actions = {
     // })
     let result = await login({username: username.trim(), password: password});
     // console.dir(Promise)
-    if(result.code==20000){
+    if(result.code == 20000||result.code == 200){
       commit('SET_TOKEN', result.data.token)
       setToken(result.data.token)
       return 'ok';
