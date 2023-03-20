@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '探针系统',
+  title: 'SaaS平台',
 
   /**
    * @type {boolean} true | false

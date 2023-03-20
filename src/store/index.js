@@ -7,6 +7,9 @@ import user from './modules/user'
 
 Vue.use(Vuex)
 const actions = {
+    updateisactive(context,value){
+        context.commit('updateIsActive',value)
+    },
   updatecompareip(context){
       axios.post('/simple_event_data',{"s_time":state.currentTime[0],"e_time":state.currentTime[1],data:[state.province||"",state.city||"",state.area||"",state.userinfo.adcode||""]}).then((res)=>{
           context.commit('updateCompareip',res.data.length)
@@ -78,6 +81,10 @@ const actions = {
 }
 //mutations——用于操作数据(state)
 const mutations = {
+  updateIsActive(state,value){
+    sessionStorage.setItem(`isActive`,JSON.stringify(value))
+    state.isActive = value
+  },
   updateRSApubkey(state,value){
       state.RSApubkey = value
   },
@@ -161,6 +168,7 @@ const mutations = {
 //准备state——用于存储数据
 const state = {
   RSApubkey:'',
+  isActive:''||JSON.parse(sessionStorage.getItem(`isActive`)),
   token:''||sessionStorage.getItem(`token`),
   // token:''||JSON.parse(localStorage.getItem(`token`)),
   IPorUnit:''||JSON.parse(sessionStorage.getItem(`IPorUnit`)),

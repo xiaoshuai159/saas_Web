@@ -71,7 +71,7 @@
               //console.log(error.response.data.code)
               if(error.response.data.code=='401'){
                 this.$message.error('验证码有误，请重试！');
-              }else{
+              }else if(error.response.data.code=='402'){
                 this.$message.error('账号或密码有误，请重试！');
               }
                 // return Promise.reject(error);

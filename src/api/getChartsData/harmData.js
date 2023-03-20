@@ -1,2 +1,2 @@
 import request from '@/utils/request'
-export const reqHarmData = (date)=>request({url:'',method:'post',data:date})
+export const reqHarmData = (date)=>request({url:'/harmData',method:'post',data:{date:date}})

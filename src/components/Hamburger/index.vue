@@ -24,6 +24,9 @@ export default {
   },
   methods: {
     toggleClick() {
+      // console.log('点击了，要进行resize'+this.isActive);
+      this.$store.dispatch('updateisactive',this.isActive)
+      // console.log(this.$store.state.isActive);
       this.$emit('toggleClick')
     }
   }
