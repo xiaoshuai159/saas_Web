@@ -134,9 +134,9 @@ export default {
     return {
       loading: false,
       chartInstance: null,
-      area_num: null,
-      unit_num: null,
-      ip_num: null,
+      area_num: 9,
+      unit_num: 32,
+      ip_num: 36,
       // returnarg:this.$route.params.returnarg,
       mapData: {}, // 获取的省份的地图矢量数据缓存
       // nameArr:[],
@@ -222,8 +222,8 @@ export default {
     this.chooseName();
   },
   mounted() {
-    this.getData();
-    // this.chooseMap()
+    // this.getData();
+    this.chooseMap()
     // this.updateChart()
     window.addEventListener("resize", this.screenAdapter);
     // this.screenAdapter()
@@ -519,14 +519,15 @@ export default {
     },
     screenAdapter() {
       const visualSize = this.$refs.map_ref.offsetWidth /4.2
-      if(this.computeMax()==0){
-        this.chartInstance.resize()
-        return
-      }else{
+      // if(this.computeMax()==0){
+      //   this.chartInstance.resize()
+      //   return
+      // }else{
         const adapterOption = {
         visualMap:{
             min: 0,
-            max: this.computeMax(),
+            // max: this.computeMax(),
+            max:11,
             inRange: {
               color: ["white", "red"], //控制颜色渐变的范围
             },
@@ -540,7 +541,7 @@ export default {
       }
       this.chartInstance.setOption(adapterOption)
       this.chartInstance.resize();
-      }
+      // }
       
     },
     chooseName() {
@@ -558,7 +559,81 @@ export default {
         this.mapData[this.value1.key] = ret.data;
         this.$echarts.registerMap(this.value1.key, ret.data);
       }
-      if (this.computeMax() == 0) {
+  //     if (this.computeMax() == 0) {
+  //       const initOption = {
+  //         geo: [
+  //           {
+  //             type: "map",
+  //             map: this.value1.key,
+  //             roam: false,
+  //             zoom: 0.8,
+  //           },
+  //         ],
+  //         series: [
+  //           {
+  //             // data: this.$store.state.provinceMapData,
+  //             data:[{
+  //   "name": "三明市",
+  //   "value": 2
+  // },
+  // {
+  //   "name": "南平市",
+  //   "value": 2
+  // },
+  // {
+  //   "name": "厦门市",
+  //   "value": 5
+  // },
+  // {
+  //   "name": "宁德市",
+  //   "value": 1
+  // },
+  // {
+  //   "name": "泉州市",
+  //   "value": 6
+  // },
+  // {
+  //   "name": "漳州市",
+  //   "value": 6
+  // },
+  // {
+  //   "name": "福州市",
+  //   "value": 11
+  // },
+  // {
+  //   "name": "莆田市",
+  //   "value": 2
+  // },
+  // {
+  //   "name": "龙岩市",
+  //   "value": 1
+  // }],
+  //             geoIndex: 0, //将数据与第0个geo配置关联在一起
+  //             type: "map",
+  //           },
+  //         ],
+
+  //         tooltip: {
+  //           show: true,
+  //           trigger: "item",
+  //           triggerOn: "mousemove",
+  //           padding: 10,
+  //           formatter: function (params) {
+  //             if (params.data == undefined) {
+  //               return `${params.name}</br>数量：0`;
+  //             } else {
+  //               return `${params.data.name}</br>数量：${params.data.value}`;
+  //             }
+  //           },
+  //         },
+
+  //         // layoutSize:'65%',//大小
+  //       };
+  //       this.$nextTick(() => {
+  //         this.chartInstance.setOption(initOption, true);
+  //         this.loading = false;
+  //       });
+  //     } else {
         const initOption = {
           geo: [
             {
@@ -570,52 +645,51 @@ export default {
           ],
           series: [
             {
-              data: this.$store.state.provinceMapData,
-              geoIndex: 0, //将数据与第0个geo配置关联在一起
-              type: "map",
-            },
-          ],
-
-          tooltip: {
-            show: true,
-            trigger: "item",
-            triggerOn: "mousemove",
-            padding: 10,
-            formatter: function (params) {
-              if (params.data == undefined) {
-                return `${params.name}</br>数量：0`;
-              } else {
-                return `${params.data.name}</br>数量：${params.data.value}`;
-              }
-            },
-          },
-
-          // layoutSize:'65%',//大小
-        };
-        this.$nextTick(() => {
-          this.chartInstance.setOption(initOption, true);
-          this.loading = false;
-        });
-      } else {
-        const initOption = {
-          geo: [
-            {
-              type: "map",
-              map: this.value1.key,
-              roam: false,
-              zoom: 0.8,
-            },
-          ],
-          series: [
-            {
-              data: this.$store.state.provinceMapData,
+              // data: this.$store.state.provinceMapData,
+              data:[{
+    "name": "三明市",
+    "value": 2
+  },
+  {
+    "name": "南平市",
+    "value": 2
+  },
+  {
+    "name": "厦门市",
+    "value": 5
+  },
+  {
+    "name": "宁德市",
+    "value": 1
+  },
+  {
+    "name": "泉州市",
+    "value": 6
+  },
+  {
+    "name": "漳州市",
+    "value": 6
+  },
+  {
+    "name": "福州市",
+    "value": 11
+  },
+  {
+    "name": "莆田市",
+    "value": 2
+  },
+  {
+    "name": "龙岩市",
+    "value": 1
+  }],
               geoIndex: 0, //将数据与第0个geo配置关联在一起
               type: "map",
             },
           ],
           visualMap: {
             min: 0,
-            max: this.computeMax(),
+            // max: this.computeMax(),
+            max:11,
             inRange: {
               color: ["white", "red"], //控制颜色渐变的范围
             },
@@ -646,7 +720,7 @@ export default {
           this.chartInstance.setOption(initOption,true);
           this.loading = false;
         });
-      }
+      // }
 
       this.chartInstance.on("click", (arg) => {
         if (arg.name == "台湾省") {
@@ -673,18 +747,18 @@ export default {
         }
       });
     },
-    computeMax() {
-      let num_array = [];
-      //console.log(this.mapData_length);
-      if (this.$store.state.provinceMapData.length == 0) {
-        return 0;
-      }
-      for (var i = 0; i < this.$store.state.provinceMapData.length; i++) {
-        num_array.push(this.$store.state.provinceMapData[i].value);
-      }
-      //   console.log(this.$store.state.provinceMapData)
-      return Math.max(...num_array);
-    },
+    // computeMax() {
+    //   let num_array = [];
+    //   //console.log(this.mapData_length);
+    //   if (this.$store.state.provinceMapData.length == 0) {
+    //     return 0;
+    //   }
+    //   for (var i = 0; i < this.$store.state.provinceMapData.length; i++) {
+    //     num_array.push(this.$store.state.provinceMapData[i].value);
+    //   }
+    //   //   console.log(this.$store.state.provinceMapData)
+    //   return Math.max(...num_array);
+    // },
     sendQuery(v1) {
       v1 = this.query;
       this.$store.dispatch("updateiporunit", v1);
@@ -742,7 +816,8 @@ export default {
           },
           visualMap: {
             min: 0,
-            max: this.computeMax(),
+            // max: this.computeMax(),
+            max:11,
             inRange: {
               color: ["white", "red"], //控制颜色渐变的范围
             },

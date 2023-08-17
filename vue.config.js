@@ -49,7 +49,7 @@ module.exports = {
         // target:'http://192.168.10.84:5000',
         // target:'http://192.168.10.43:5000',
         // target:'http://192.168.10.193:5000',
-        target:'http://192.168.31.148:5000/ ',
+        target:'http://192.168.10.189:5000/ ',
         ws: true,
         changeOrigin: true,
         // secure: false, // 如果是https接口，需要配置这个参数

@@ -46,7 +46,44 @@ import axios from "axios";
 export default {
   data() {
     return {
-      tableData: [],
+      tableData: [
+      {
+    "province": "福州市",
+    "num": 9
+  },
+  {
+    "province": "泉州市",
+    "num": 6
+  },
+  {
+    "province": "漳州市",
+    "num": 5
+  },
+  {
+    "province": "厦门市",
+    "num": 4
+  },
+  {
+    "province": "三明市",
+    "num": 2
+  },
+  {
+    "province": "南平市",
+    "num": 2
+  },
+  {
+    "province": "莆田市",
+    "num": 2
+  },
+  {
+    "province": "宁德市",
+    "num": 1
+  },
+  {
+    "province": "龙岩市",
+    "num": 1
+  }
+      ],
       event_length: "",
       loading: false,
       currentTime: this.$store.state.currentTime,
@@ -191,12 +228,12 @@ export default {
   //     // this.changeTime(this.currentTime)
 
   //   },
-  mounted() {
-    // this.$store.dispatch('updatecomparearea')
-    this.$nextTick(() => {
-      this.changeTime(this.currentTime);
-    });
-  },
+  // mounted() {
+  //   // this.$store.dispatch('updatecomparearea')
+  //   this.$nextTick(() => {
+  //     this.changeTime(this.currentTime);
+  //   });
+  // },
   watch: {
     "$store.state.currentTime": {
       handler(newValue) {

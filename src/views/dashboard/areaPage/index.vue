@@ -360,19 +360,19 @@ export default {
         return
       }else{
         const adapterOption = {
-        visualMap:{
-            min: 0,
-            max: this.computeMax(),
-            inRange: {
-              color: ["white", "red"], //控制颜色渐变的范围
-            },
-            calculable: true, //出现滑块
-            // demension: 2, //数据维度
-            // seriesIndex: 0,
-            left: "5%",
-            itemHeight: visualSize,
-            itemWidth:visualSize/6
-          },
+        // visualMap:{
+        //     min: 0,
+        //     max: this.computeMax(),
+        //     inRange: {
+        //       color: ["white", "red"], //控制颜色渐变的范围
+        //     },
+        //     calculable: true, //出现滑块
+        //     // demension: 2, //数据维度
+        //     // seriesIndex: 0,
+        //     left: "5%",
+        //     itemHeight: visualSize,
+        //     itemWidth:visualSize/6
+        //   },
       }
         this.chartInstance.setOption(adapterOption);
         this.chartInstance.resize();
@@ -613,19 +613,19 @@ export default {
               type: "map",
             },
           ],
-          visualMap: {
-            min: 0,
-            max: this.computeMax(),
-            inRange: {
-              color: ["white", "red"], //控制颜色渐变的范围
-            },
-            calculable: true, //出现滑块
-            // demension: 2, //数据维度
-            // seriesIndex: 0,
-            left: "5%",
-            itemHeight: this.$refs.map_ref.offsetWidth /4.2,
-            itemWidth:this.$refs.map_ref.offsetWidth /4.2/6
-          },
+          // visualMap: {
+          //   min: 0,
+          //   max: this.computeMax(),
+          //   inRange: {
+          //     color: ["white", "red"], //控制颜色渐变的范围
+          //   },
+          //   calculable: true, //出现滑块
+          //   // demension: 2, //数据维度
+          //   // seriesIndex: 0,
+          //   left: "5%",
+          //   itemHeight: this.$refs.map_ref.offsetWidth /4.2,
+          //   itemWidth:this.$refs.map_ref.offsetWidth /4.2/6
+          // },
           tooltip: {
             show: true,
             trigger: "item",
@@ -730,19 +730,19 @@ export default {
             geoIndex: 0,
             type: "map",
           },
-          visualMap: {
-            min: 0,
-            max: this.computeMax(),
-            inRange: {
-              color: ["white", "red"], //控制颜色渐变的范围
-            },
-            calculable: true, //出现滑块
-            // demension: 2, //数据维度
-            // seriesIndex: 0,
-            left: "5%",
-            itemHeight: this.$refs.map_ref.offsetWidth /4.2,
-            itemWidth:this.$refs.map_ref.offsetWidth /4.2/6
-          },
+          // visualMap: {
+          //   min: 0,
+          //   max: this.computeMax(),
+          //   inRange: {
+          //     color: ["white", "red"], //控制颜色渐变的范围
+          //   },
+          //   calculable: true, //出现滑块
+          //   // demension: 2, //数据维度
+          //   // seriesIndex: 0,
+          //   left: "5%",
+          //   itemHeight: this.$refs.map_ref.offsetWidth /4.2,
+          //   itemWidth:this.$refs.map_ref.offsetWidth /4.2/6
+          // },
           tooltip: {
             show: true,
             trigger: "item",

@@ -163,6 +163,13 @@
                     <span v-else>{{ scope.row.unit_name }}</span>
                   </template>
                 </el-table-column>
+                <el-table-column
+                  prop="event_details"
+                  label="事件详情"
+                  min-width="230"
+                  show-overflow-tooltip
+                >
+                </el-table-column>
               </el-table>
               <el-pagination
                 @size-change="handleSizeChange"
@@ -207,7 +214,327 @@ export default {
       options: [],
       options2: [],
       options3: [],
-      tableData: [],
+      tableData: [{
+          _id:'124.31.244.3',
+          date:'2023/1/29',
+          event_type:'数据库攻击',
+          city:'昌都市',
+          district:'边坝县',
+          unit_type:'未知',
+          unit_name:'边坝县水利局',
+          event_details:'sqlserver数据库下载恶意代码'
+        },
+        {
+          _id:'60.171.137.119',
+          date:'2023/2/1',
+          event_type:'数据库攻击',
+          city:'安庆市',
+          district:'岳西县',
+          unit_type:'政府',
+          unit_name:'岳西县行政服务中心',
+          event_details:'sqlserver数据库下载恶意代码'
+        },
+        {
+          _id:'112.30.214.245',
+          date:'2023/2/5',
+          event_type:'数据库攻击',
+          city:'淮南市',
+          district:'八公山区',
+          unit_type:'政府',
+          unit_name:'淮南市八公山区新庄孜街道办事处',
+          event_details:'redis数据库下载恶意代码'
+        },
+        {
+          _id:'111.6.121.15',
+          date:'2023/2/9',
+          event_type:'数据库攻击',
+          city:'濮阳市',
+          district:'华龙区',
+          unit_type:'未知',
+          unit_name:'濮阳市政务服务和大数据管理局',
+          event_details:'mysql数据库下载恶意代码'
+        },
+        {
+          _id:'203.93.212.46',
+          date:'2023/2/12',
+          event_type:'数据库攻击',
+          city:'永州市',
+          district:'零陵区',
+          unit_type:'医院',
+          unit_name:'永州市中心医院',
+          event_details:'sqlserver数据库下载恶意代码'
+        },
+        {
+          _id:'120.198.90.110',
+          date:'2023/2/14',
+          event_type:'数据库攻击',
+          city:'河源市',
+          district:'和平县',
+          unit_type:'医院',
+          unit_name:'和平中医院',
+          event_details:'sqlserver数据库下载恶意代码'
+        },
+        {
+          _id:'223.244.92.26',
+          date:'2023/2/19',
+          event_type:'数据库攻击',
+          city:'淮南市',
+          district:'田家庵区',
+          unit_type:'未知',
+          unit_name:'淮南市市场监督管理局',
+          event_details:'mysql数据库下载恶意代码'
+        },
+        {
+          _id:'180.139.139.132',
+          date:'2023/2/21',
+          event_type:'数据库攻击',
+          city:'南宁市',
+          district:'青秀区',
+          unit_type:'医院',
+          unit_name:'广西中医药大学第一附属医院',
+          event_details:'redis数据库下载恶意代码'
+        },
+        {
+          _id:'119.6.89.155',
+          date:'2023/2/24',
+          event_type:'数据库攻击',
+          city:'成都市',
+          district:'武侯区',
+          unit_type:'未知',
+          unit_name:'中国人民武装警察部队成都市消防支队',
+          event_details:'postgresql数据库被植入后门账号'
+        },
+        {
+          _id:'119.53.91.46',
+          date:'2023/3/2',
+          event_type:'数据库攻击',
+          city:'长春市',
+          district:'双阳区',
+          unit_type:'未知',
+          unit_name:'长春市双阳区结核病防治督导办公室',
+          event_details:'sqlserver数据库下载恶意代码'
+        },
+        {
+          _id:'218.106.164.68',
+          date:'2023/3/4',
+          event_type:'数据库攻击',
+          city:'北京市',
+          district:'朝阳区',
+          unit_type:'政府',
+          unit_name:'中国人民共和国外交部',
+          event_details:'mysql数据库下载恶意代码'
+          
+        },
+        {
+          _id:'110.167.233.26',
+          date:'2023/3/5',
+          event_type:'数据库攻击',
+          city:'西宁市',
+          district:'城北区',
+          unit_type:'政府',
+          unit_name:'青海省高级人民法院',
+          event_details:'redis数据库下载恶意代码'
+        },
+        {
+          _id:'103.152.77.160',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'陇南市',
+          district:'成县',
+          unit_type:'未知',
+          unit_name:'甘肃柏隆电子商务科技有限责任公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'117.114.138.58',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'北京市',
+          district:'昌平区',
+          unit_type:'未知',
+          unit_name:'北京教育信息网服务中心有限公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'117.157.65.28',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'甘肃省',
+          district:'兰州市',
+          unit_type:'未知',
+          unit_name:'深圳市路通网络技术有限公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'120.196.74.75',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'广州市',
+          district:'白云区',
+          unit_type:'未知',
+          unit_name:'广州诚丰信知识产权有限公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'120.224.3.159',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'泰安市',
+          district:'肥城市',
+          unit_type:'未知',
+          unit_name:'肥城市王瓜店街道办事处王西村民委员会',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'122.5.106.198',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'淄博市',
+          district:'张店区',
+          unit_type:'未知',
+          unit_name:'山东通广电子有限公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'123.15.32.150',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'郑州市',
+          district:'金水区',
+          unit_type:'未知',
+          unit_name:'河南省地质矿产勘查开发局第二地质环境调查院',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'153.35.193.250',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'泰州市',
+          district:'海陵区',
+          unit_type:'未知',
+          unit_name:'飞救医疗科技(北京)有限公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'153.35.193.251',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'泰州市',
+          district:'海陵区',
+          unit_type:'未知',
+          unit_name:'飞救医疗科技(北京)有限公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'218.200.15.148',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'渭南市',
+          district:'蒲城县',
+          unit_type:'未知',
+          unit_name:'陕西信使科技文化有限公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'218.23.181.169',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'池州市',
+          district:'青阳县',
+          unit_type:'未知',
+          unit_name:'池州百信医院',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'221.1.208.162',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'菏泽市',
+          district:'单县',
+          unit_type:'未知',
+          unit_name:'单县人民医院',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'222.173.80.190',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'青岛市',
+          district:'崂山区',
+          unit_type:'未知',
+          unit_name:'青岛优多共享电子商务有限公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'222.71.102.162',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'上海市',
+          district:'徐汇区',
+          unit_type:'未知',
+          unit_name:'上海溧瑜工程管理咨询中心',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'223.214.194.9',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'宣城市',
+          district:'',
+          unit_type:'未知',
+          unit_name:'宣城旌德县中医院',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'58.215.216.238',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'无锡市',
+          district:'滨湖区',
+          unit_type:'未知',
+          unit_name:'华东理工大学',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'58.33.216.92',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'上海市',
+          district:'徐汇区',
+          unit_type:'未知',
+          unit_name:'上海市文化和旅游局执法总队',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'60.174.228.148',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'合肥市',
+          district:'蜀山区',
+          unit_type:'未知',
+          unit_name:'安徽索峰电力工程有限公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'60.214.209.188',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'东营市',
+          district:'河口区',
+          unit_type:'未知',
+          unit_name:'东营嘉盛文化传播有限公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },
+        {
+          _id:'60.216.18.86',
+          date:'2023/2/3',
+          event_type:'数据库未授权',
+          city:'济南市',
+          district:'市中区',
+          unit_type:'未知',
+          unit_name:'山东嘉灿文化传媒有限公司',
+          event_details:'redis数据库未授权访问漏洞'
+        },],
       multipleSelection: "",
       multipleSelection_id: [],
       exportid: [],
@@ -618,104 +945,104 @@ export default {
         });
     },
   },
-  mounted() {
-    this.loading = true;
-    // this.$nextTick(()=>{})
-    if (
-      this.$store.state.province == "重庆市" ||
-      this.$store.state.province == "上海市" ||
-      this.$store.state.province == "北京市" ||
-      this.$store.state.province == "天津市" ||
-      this.$store.state.city == "中山市"
-    ) {
-      let ranCode = randomCode()   //AES-key
-      let encryptedAES=encryptRsa(this.$store.state.RSApubkey, ranCode)
-      let encryptedData = encryptAes(ranCode, JSON.stringify({
-            s_time: this.$store.state.currentTime[0],
-            e_time: this.$store.state.currentTime[1],
-            data: {
-              address: [
-                this.$store.state.province ||
-                  this.$store.state.userinfo.province ||
-                  "",
-                this.$store.state.province ||
-                  this.$store.state.userinfo.city ||
-                  "",
-                this.$store.state.city ||
-                  this.$store.state.userinfo.district ||
-                  "",
-                this.$store.state.userinfo.adcode || "",
-              ],
-              search: [
-                "",
-                this.$refs.selectLable2.selected.label || "",
-                this.$refs.selectLable3.selected.label || "",
-                this.searchValue.input1,
-                this.searchValue.input2,
-              ],
-            },
-          }))
-      axios({
-        method:"post",
-        url:"/details",
-        data:{"data": encryptedData},
-        headers:{
-          'X-CSRFToken':this.$store.state.token,
-          'encryptedAES':encryptedAES,
-        }
-      }).then((rep) => {
-          let decryptedData = decryptAes(ranCode,rep.data).replace(/\0/g,"")   
-          this.tableData= JSON.parse(decryptedData)
-          this.filterOptions1();
-          this.filterOptions2();
-          this.filterOptions3();
-          this.loading = false;
-        });
-    } else {
-      let ranCode = randomCode()   //AES-key
-      let encryptedAES=encryptRsa(this.$store.state.RSApubkey, ranCode)
-      let encryptedData = encryptAes(ranCode,JSON.stringify({
-            s_time: this.$store.state.currentTime[0],
-            e_time: this.$store.state.currentTime[1],
-            data: {
-              address: [
-                this.$store.state.province ||
-                  this.$store.state.userinfo.province ||
-                  "",
-                this.$store.state.city || this.$store.state.userinfo.city || "",
-                this.$store.state.area ||
-                  this.$store.state.userinfo.district ||
-                  "",
-                this.$store.state.userinfo.adcode || "",
-              ],
-              search: [
-                "",
-                this.$refs.selectLable2.selected.label || "",
-                this.$refs.selectLable3.selected.label || "",
-                this.searchValue.input1,
-                this.searchValue.input2,
-              ],
-            },
-          }))
-      axios({
-        method:"post",
-        url:"/details",
-        data:{"data": encryptedData},
-        headers:{
-          'X-CSRFToken':this.$store.state.token,
-          'encryptedAES':encryptedAES,
-        }
-      }).then((rep) => {
-          let decryptedData = decryptAes(ranCode,rep.data).replace(/\0/g,"")  
-          // debugger 
-          this.tableData= JSON.parse(decryptedData)
-          this.filterOptions1();
-          this.filterOptions2();
-          this.filterOptions3();
-          this.loading = false;
-        });
-    }
-  },
+  // mounted() {
+  //   this.loading = true;
+  //   // this.$nextTick(()=>{})
+  //   if (
+  //     this.$store.state.province == "重庆市" ||
+  //     this.$store.state.province == "上海市" ||
+  //     this.$store.state.province == "北京市" ||
+  //     this.$store.state.province == "天津市" ||
+  //     this.$store.state.city == "中山市"
+  //   ) {
+  //     let ranCode = randomCode()   //AES-key
+  //     let encryptedAES=encryptRsa(this.$store.state.RSApubkey, ranCode)
+  //     let encryptedData = encryptAes(ranCode, JSON.stringify({
+  //           s_time: this.$store.state.currentTime[0],
+  //           e_time: this.$store.state.currentTime[1],
+  //           data: {
+  //             address: [
+  //               this.$store.state.province ||
+  //                 this.$store.state.userinfo.province ||
+  //                 "",
+  //               this.$store.state.province ||
+  //                 this.$store.state.userinfo.city ||
+  //                 "",
+  //               this.$store.state.city ||
+  //                 this.$store.state.userinfo.district ||
+  //                 "",
+  //               this.$store.state.userinfo.adcode || "",
+  //             ],
+  //             search: [
+  //               "",
+  //               this.$refs.selectLable2.selected.label || "",
+  //               this.$refs.selectLable3.selected.label || "",
+  //               this.searchValue.input1,
+  //               this.searchValue.input2,
+  //             ],
+  //           },
+  //         }))
+  //     axios({
+  //       method:"post",
+  //       url:"/details",
+  //       data:{"data": encryptedData},
+  //       headers:{
+  //         'X-CSRFToken':this.$store.state.token,
+  //         'encryptedAES':encryptedAES,
+  //       }
+  //     }).then((rep) => {
+  //         let decryptedData = decryptAes(ranCode,rep.data).replace(/\0/g,"")   
+  //         this.tableData= JSON.parse(decryptedData)
+  //         this.filterOptions1();
+  //         this.filterOptions2();
+  //         this.filterOptions3();
+  //         this.loading = false;
+  //       });
+  //   } else {
+  //     let ranCode = randomCode()   //AES-key
+  //     let encryptedAES=encryptRsa(this.$store.state.RSApubkey, ranCode)
+  //     let encryptedData = encryptAes(ranCode,JSON.stringify({
+  //           s_time: this.$store.state.currentTime[0],
+  //           e_time: this.$store.state.currentTime[1],
+  //           data: {
+  //             address: [
+  //               this.$store.state.province ||
+  //                 this.$store.state.userinfo.province ||
+  //                 "",
+  //               this.$store.state.city || this.$store.state.userinfo.city || "",
+  //               this.$store.state.area ||
+  //                 this.$store.state.userinfo.district ||
+  //                 "",
+  //               this.$store.state.userinfo.adcode || "",
+  //             ],
+  //             search: [
+  //               "",
+  //               this.$refs.selectLable2.selected.label || "",
+  //               this.$refs.selectLable3.selected.label || "",
+  //               this.searchValue.input1,
+  //               this.searchValue.input2,
+  //             ],
+  //           },
+  //         }))
+  //     axios({
+  //       method:"post",
+  //       url:"/details",
+  //       data:{"data": encryptedData},
+  //       headers:{
+  //         'X-CSRFToken':this.$store.state.token,
+  //         'encryptedAES':encryptedAES,
+  //       }
+  //     }).then((rep) => {
+  //         let decryptedData = decryptAes(ranCode,rep.data).replace(/\0/g,"")  
+  //         // debugger 
+  //         this.tableData= JSON.parse(decryptedData)
+  //         this.filterOptions1();
+  //         this.filterOptions2();
+  //         this.filterOptions3();
+  //         this.loading = false;
+  //       });
+  //   }
+  // },
   watch: {
     "$store.state.currentTime": {
       handler(newValue) {
